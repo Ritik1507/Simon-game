@@ -33,7 +33,7 @@ $(".btn").click(function () {
 function checkAnswer(currentlevel) {
 
     if (gamePattern[currentlevel] === userClickedPattern[currentlevel]) {
-        console.log("success");
+        
         if (userClickedPattern.length === gamePattern.length) {
 
           setTimeout(function () {
@@ -44,7 +44,15 @@ function checkAnswer(currentlevel) {
 
     }
     else {
-        console.log("wrong");
+       $("body").addClass("game-over");
+
+       setTimeout(function(){
+        $("body").removeClass("game-over");
+       
+       }, 200);
+       $("h1").text("Game Over, Press Any Key to Restart")
+
+       startOver();
     }
 
 
@@ -88,3 +96,8 @@ function animatePressed(currentColor) {
     }, 100);
 }
 
+function startOver(){
+    started = false;
+    level = 0;
+    gamePattern = [];
+}
